@@ -1,9 +1,9 @@
-import { UserState } from './types';
+import { SIGN_IN, SIGN_OUT } from './actionTypes';
+import { SignInAction, SignOutAction, UserState } from './types';
 
-export const SIGN_IN = 'SIGN_IN';
 export const signInAction = (
   userState: Omit<UserState, 'icon' | 'isSignedIn'>
-) => {
+): SignInAction => {
   return {
     type: SIGN_IN,
     payload: {
@@ -14,8 +14,7 @@ export const signInAction = (
   };
 };
 
-export const SIGN_OUT = 'SIGN_OUT';
-export const signOutAction = () => {
+export const signOutAction = (): SignOutAction => {
   return {
     type: SIGN_OUT,
     payload: {
