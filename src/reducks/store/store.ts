@@ -11,6 +11,7 @@ import {
   applyMiddleware,
   AnyAction,
 } from 'redux';
+import thunk from 'redux-thunk';
 import { UsersReducer } from '../users/reducers';
 import { UserState } from '../users/types';
 
@@ -25,6 +26,6 @@ export const createStore = (history: History) => {
       router: connectRouter(history),
       users: UsersReducer,
     }),
-    applyMiddleware(routerMiddleware(history))
+    applyMiddleware(routerMiddleware(history), thunk)
   );
 };
