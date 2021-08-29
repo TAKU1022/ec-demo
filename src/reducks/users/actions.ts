@@ -1,7 +1,9 @@
 import { UserState } from './types';
 
 export const SIGN_IN = 'SIGN_IN';
-export const signInAction = (userState: UserState) => {
+export const signInAction = (
+  userState: Omit<UserState, 'icon' | 'isSignedIn'>
+) => {
   return {
     type: SIGN_IN,
     payload: {
