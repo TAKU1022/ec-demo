@@ -1,25 +1,11 @@
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { RootState } from './reducks/store/store';
-import { signInAction } from './reducks/users/actions';
+import Router from './Router';
 
-function App() {
-  const dispatch = useDispatch();
-  const selecter = useSelector((state: RootState) => state);
-
-  console.log(selecter.users);
-
+const App = () => {
   return (
-    <>
-      <button
-        onClick={() =>
-          dispatch(signInAction({ uid: '00001', username: 'TAKU' }))
-        }
-      >
-        Sign In
-      </button>
-    </>
+    <main>
+      <Router />
+    </main>
   );
-}
+};
 
 export default App;
