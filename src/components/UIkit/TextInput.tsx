@@ -1,15 +1,15 @@
 import { TextField } from '@material-ui/core';
-import { VFC } from 'react';
+import { ChangeEvent, VFC } from 'react';
 
 type Props = {
   fullWidth: boolean;
-  label: Node;
+  label: string;
   multiline: boolean;
   minRows: number | string;
   required: boolean;
   value: string;
   type: string;
-  onChange: () => void;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const TextInput: VFC<Props> = (props: Props) => {
