@@ -1,7 +1,8 @@
+import { VFC } from 'react';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../reducks/users/operations';
 
-const Login = () => {
+const Login: VFC = () => {
   const dispatch = useDispatch();
 
   return (
