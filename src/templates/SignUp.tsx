@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback, VFC } from 'react';
 import { useState } from 'react';
-import { TextInput } from '../components/UIkit';
+import { PrimaryButton, TextInput } from '../components/UIkit';
 
 const SignUp: VFC = () => {
   const [username, setUsername] = useState('');
@@ -73,6 +73,13 @@ const SignUp: VFC = () => {
         type={'password'}
         onChange={inputConfirmPassword}
       />
+      <div className="module-spacer--medium" />
+      <div className="center">
+        <PrimaryButton
+          label={'アカウントを登録する'}
+          onClick={() => console.log('clicked!')}
+        />
+      </div>
     </div>
   );
 };
