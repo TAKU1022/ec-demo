@@ -1,8 +1,12 @@
 import { ChangeEvent, useCallback, VFC } from 'react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { PrimaryButton, TextInput } from '../components/UIkit';
+import { signUp } from '../reducks/users/operations';
 
 const SignUp: VFC = () => {
+  const dispatch = useDispatch();
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPasword] = useState('');
@@ -77,7 +81,9 @@ const SignUp: VFC = () => {
       <div className="center">
         <PrimaryButton
           label={'アカウントを登録する'}
-          onClick={() => console.log('clicked!')}
+          onClick={() =>
+            dispatch(signUp(username, email, password, confirmPassword))
+          }
         />
       </div>
     </div>
