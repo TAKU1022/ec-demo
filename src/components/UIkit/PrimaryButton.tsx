@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 import { VFC } from 'react';
 
 const useStyles = makeStyles({
-  'button': {
+  button: {
     backgroundColor: '#4dd0e1',
     color: '#000',
     fontSize: 16,
