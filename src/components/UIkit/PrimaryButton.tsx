@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { VFC } from 'react';
+import { memo, VFC } from 'react';
 
 const useStyles = makeStyles({
   button: {
@@ -18,7 +18,7 @@ type Props = {
   onClick: () => void;
 };
 
-const PrimaryButton: VFC<Props> = (props: Props) => {
+const PrimaryButton: VFC<Props> = memo((props: Props) => {
   const { label, onClick } = props;
   const classes = useStyles();
 
@@ -27,6 +27,6 @@ const PrimaryButton: VFC<Props> = (props: Props) => {
       {label}
     </Button>
   );
-};
+});
 
 export default PrimaryButton;

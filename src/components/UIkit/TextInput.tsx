@@ -1,4 +1,5 @@
 import { TextField } from '@material-ui/core';
+import { memo } from 'react';
 import { ChangeEvent, VFC } from 'react';
 
 type Props = {
@@ -12,7 +13,7 @@ type Props = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const TextInput: VFC<Props> = (props: Props) => {
+const TextInput: VFC<Props> = memo((props: Props) => {
   const {
     fullWidth,
     label,
@@ -37,6 +38,6 @@ const TextInput: VFC<Props> = (props: Props) => {
       onChange={onChange}
     />
   );
-};
+});
 
 export default TextInput;
