@@ -7,14 +7,14 @@ const Login: VFC = () => {
 
   return (
     <div>
-      <h2>ログイン</h2>
+      {/* <h2>ログイン</h2>
       <button
         onClick={() => {
           dispatch(signIn());
         }}
       >
         ログインする
-      </button>
+      </button> */}
     </div>
   );
 };
