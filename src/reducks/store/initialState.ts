@@ -6,8 +6,8 @@ export type State = {
 
 export const initialState: State = {
   users: {
-    icon: '',
     isSignedIn: false,
+    role: '',
     uid: '',
     username: '',
   },
