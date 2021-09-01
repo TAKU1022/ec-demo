@@ -1,5 +1,6 @@
 import { VFC } from 'react';
 import { Route, Switch } from 'react-router';
+import Auth from './Auth';
 import { Home, SignIn, SignUp } from './templates';
 
 const Router: VFC = () => {
@@ -7,7 +8,9 @@ const Router: VFC = () => {
     <Switch>
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/signin" component={SignIn} />
-      <Route exact path="/" component={Home} />
+      <Auth>
+        <Route exact path="/" component={Home} />
+      </Auth>
     </Switch>
   );
 };
