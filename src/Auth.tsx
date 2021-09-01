@@ -18,8 +18,7 @@ const Auth: VFC<Props> = (props: Props) => {
     if (!isSginedIn) {
       dispatch(listenAuthState());
     }
-    // eslint-disable-next-line
-  }, []);
+  }, []); // eslint-disable-line
 
   if (!isSginedIn) {
     return <></>;
