@@ -12,6 +12,11 @@ export const UsersReducer = (
         ...state,
         ...action.payload,
       };
+    case ActionTypes.SIGN_OUT:
+      return {
+        ...state,
+        ...action.payload,
+      };
     default:
       return state;
   }
