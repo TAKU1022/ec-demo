@@ -1,10 +1,11 @@
-import { push } from 'connected-react-router';
+import { CallHistoryMethodAction, push } from 'connected-react-router';
 import { Dispatch } from 'react';
 import { auth, db, FirebaseTimestamp } from '../../firebase';
 import { signInAction } from './actions';
+import { SignInAction } from './types';
 
 export const listenAuthState = () => {
-  return async (dispatch: Dispatch<any>) => {
+  return async (dispatch: Dispatch<SignInAction | CallHistoryMethodAction>) => {
     return auth.onAuthStateChanged((user) => {
       if (user) {
         const uid = user.uid;
@@ -33,7 +34,7 @@ export const listenAuthState = () => {
 };
 
 export const signIn = (email: string, password: string) => {
-  return async (dispatch: Dispatch<any>) => {
+  return async (dispatch: Dispatch<SignInAction | CallHistoryMethodAction>) => {
     if (email === '' || password === '') {
       alert('必須項目が未入力です');
       return;
@@ -74,7 +75,7 @@ export const signUp = (
   password: string,
   confirmPasword: string
 ) => {
-  return async (dispach: Dispatch<any>) => {
+  return async (dispach: Dispatch<CallHistoryMethodAction>) => {
     if (
       username === '' ||
       email === '' ||
