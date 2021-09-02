@@ -15,7 +15,7 @@ export interface SignInAction extends Action {
 
 export interface SignOutAction extends Action {
   type: typeof SIGN_OUT;
-  payload: Omit<UserState, 'role'>;
+  payload: UserState;
 }
 
 export type UserActionTypes = SignInAction | SignOutAction;
