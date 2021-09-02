@@ -1,8 +1,8 @@
 import { CallHistoryMethodAction, push } from 'connected-react-router';
 import { Dispatch } from 'react';
 import { auth, db, FirebaseTimestamp } from '../../firebase';
-import { signInAction } from './actions';
-import { SignInAction } from './types';
+import { signInAction, signOutAction } from './actions';
+import { SignInAction, SignOutAction } from './types';
 
 export const listenAuthState = () => {
   return async (dispatch: Dispatch<SignInAction | CallHistoryMethodAction>) => {
@@ -117,5 +117,17 @@ export const signUp = (
             });
         }
       });
+  };
+};
+
+export const signOut = () => {
+  return async (
+    dispatch: Dispatch<SignOutAction | CallHistoryMethodAction>
+  ) => {
+    return auth.signOut().then(() => {
+      dispatch(signOutAction());
+
+      dispatch(push('/signin'));
+    });
   };
 };
