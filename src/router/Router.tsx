@@ -1,7 +1,7 @@
 import { VFC } from 'react';
 import { Route, Switch } from 'react-router';
 import Auth from '../Auth';
-import { Home, Reset, SignIn, SignUp } from '../templates';
+import { Home, ProductEdit, Reset, SignIn, SignUp } from '../templates';
 
 const Router: VFC = () => {
   return (
@@ -9,8 +9,10 @@ const Router: VFC = () => {
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/signin" component={SignIn} />
       <Route exact path="/signin/reset" component={Reset}></Route>
+
       <Auth>
         <Route exact path="/" component={Home} />
+        <Route exact path="/product/edit" component={ProductEdit} />
       </Auth>
     </Switch>
   );
