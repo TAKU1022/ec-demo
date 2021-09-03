@@ -3,27 +3,21 @@ import { ChangeEvent, useCallback, VFC } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { PrimaryButton, TextInput } from '../components/UIkit';
-import { signIn } from '../reducks/users/operations';
+import { resetPassword } from '../reducks/users/operations';
 
-const SignIn: VFC = () => {
+const Reset: VFC = () => {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
-  const [password, setPasword] = useState('');
 
   const inputEmail = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => setEmail(event.target.value),
     [setEmail]
   );
 
-  const inputPassword = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => setPasword(event.target.value),
-    [setPasword]
-  );
-
   return (
     <div className="c-section-container">
-      <h2 className="u-text__headline u-text-center">サインイン</h2>
+      <h2 className="u-text__headline u-text-center">パスワードのリセット</h2>
       <div className="module-spacer--medium" />
       <TextInput
         fullWidth={true}
@@ -35,32 +29,17 @@ const SignIn: VFC = () => {
         type={'emial'}
         onChange={inputEmail}
       />
-      <TextInput
-        fullWidth={true}
-        label={'パスワード'}
-        multiline={false}
-        minRows={1}
-        required={true}
-        value={password}
-        type={'password'}
-        onChange={inputPassword}
-      />
       <div className="module-spacer--medium" />
       <div className="center">
         <PrimaryButton
-          label={'sign in'}
-          onClick={() => dispatch(signIn(email, password))}
+          label={'Reset Password'}
+          onClick={() => dispatch(resetPassword(email))}
         />
         <div className="module-spacer--medium"></div>
-        <p onClick={() => dispatch(push('/signup'))}>
-          アカウントをお持ちでない方はこちら
-        </p>
-        <p onClick={() => dispatch(push('/signin/reset'))}>
-          パスワードを忘れた方はこちら
-        </p>
+        <p onClick={() => dispatch(push('/signin'))}>ログイン画面に戻る</p>
       </div>
     </div>
   );
 };
 
-export default SignIn;
+export default Reset;

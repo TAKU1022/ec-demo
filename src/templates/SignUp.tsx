@@ -1,3 +1,4 @@
+import { push } from 'connected-react-router';
 import { ChangeEvent, useCallback, VFC } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -85,6 +86,10 @@ const SignUp: VFC = () => {
             dispatch(signUp(username, email, password, confirmPassword))
           }
         />
+        <div className="module-spacer--medium"></div>
+        <p onClick={() => dispatch(push('/signin'))}>
+          アカウントをお持ちの方はこちら
+        </p>
       </div>
     </div>
   );
