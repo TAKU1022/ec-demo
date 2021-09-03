@@ -1,4 +1,4 @@
-import Router from './Router';
+import Router from './router/Router';
 import './assets/reset.css';
 import './assets/style.css';
 

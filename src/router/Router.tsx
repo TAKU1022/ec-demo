@@ -1,7 +1,7 @@
 import { VFC } from 'react';
 import { Route, Switch } from 'react-router';
-import Auth from './Auth';
-import { Home, Reset, SignIn, SignUp } from './templates';
+import Auth from '../Auth';
+import { Home, Reset, SignIn, SignUp } from '../templates';
 
 const Router: VFC = () => {
   return (
