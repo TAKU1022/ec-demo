@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useState, VFC } from 'react';
-import { TextInput } from '../components/UIkit';
+import { SelectBox, TextInput } from '../components/UIkit';
 
 const ProductEdit: VFC = () => {
   const [name, setName] = useState('');
@@ -7,6 +7,17 @@ const ProductEdit: VFC = () => {
   const [category, setCategory] = useState('');
   const [gender, setGender] = useState('');
   const [price, setPrice] = useState('');
+
+  const categories = [
+    { id: 'tops', name: 'トップス' },
+    { id: 'shirts', name: 'シャツ' },
+    { id: 'pants', name: 'パンツ' },
+  ];
+  const genders = [
+    { id: 'all', name: '全て' },
+    { id: 'male', name: 'メンズ' },
+    { id: 'female', name: 'レディース　' },
+  ];
 
   const inputName = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => setName(event.target.value),
@@ -17,6 +28,18 @@ const ProductEdit: VFC = () => {
     (event: ChangeEvent<HTMLInputElement>) =>
       setDescription(event.target.value),
     [setDescription]
+  );
+
+  const selectCategory = useCallback(
+    (event: ChangeEvent<{ name?: string | undefined; value: unknown }>) =>
+      setCategory(event.target.value as string),
+    [setCategory]
+  );
+
+  const selectGender = useCallback(
+    (event: ChangeEvent<{ name?: string | undefined; value: unknown }>) =>
+      setGender(event.target.value as string),
+    [setGender]
   );
 
   const inputPrice = useCallback(
@@ -47,6 +70,20 @@ const ProductEdit: VFC = () => {
           value={description}
           type={'text'}
           onChange={inputDescription}
+        />
+        <SelectBox
+          label={'カテゴリー'}
+          required={true}
+          value={category}
+          options={categories}
+          select={selectCategory}
+        />
+        <SelectBox
+          label={'性別'}
+          required={true}
+          value={gender}
+          options={genders}
+          select={selectGender}
         />
         <TextInput
           fullWidth={true}
