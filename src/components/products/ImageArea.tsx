@@ -22,6 +22,20 @@ const ImageArea: VFC<Props> = memo((props: Props) => {
 
   const classes = useStyles();
 
+  const deleteImage = useCallback(
+    (id) => {
+      const confirm = window.confirm('この画像を削除しますか？');
+      if (!confirm) {
+        return;
+      } else {
+        const newImages = images.filter((image) => image.id !== id);
+        setImages(newImages);
+        return storage.ref('images').child(id).delete();
+      }
+    },
+    [images, setImages]
+  );
+
   const uploadImage = useCallback(
     (event) => {
       const file = event.target.files;
@@ -51,7 +65,12 @@ const ImageArea: VFC<Props> = memo((props: Props) => {
     <div>
       <div className="p-grid__list-images">
         {images.map((image) => (
-          <ImagePreview key={image.id} id={image.id} path={image.path} />
+          <ImagePreview
+            key={image.id}
+            id={image.id}
+            path={image.path}
+            deleteImage={deleteImage}
+          />
         ))}
       </div>
       <div className="u-text-right">
