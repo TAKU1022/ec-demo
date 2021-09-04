@@ -1,12 +1,13 @@
 import { Dispatch } from 'react';
 import { CallHistoryMethodAction, push } from 'connected-react-router';
 import { db, FirebaseTimestamp } from '../../firebase';
+import { Product } from '../../types/Product';
 
 const productRef = db.collection('products');
 
 export const saveProduct = (
   name: string,
-  descripton: string,
+  description: string,
   category: string,
   gender: string,
   price: string
@@ -17,9 +18,9 @@ export const saveProduct = (
     const ref = productRef.doc();
     const id = ref.id;
 
-    const data = {
+    const data: Product = {
       name,
-      descripton,
+      description,
       category,
       gender,
       price: parseInt(price, 10),
