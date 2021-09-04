@@ -107,7 +107,9 @@ const ProductEdit: VFC = () => {
           <PrimaryButton
             label={'商品情報を保存'}
             onClick={() =>
-              dispatch(saveProduct(name, description, category, gender, price))
+              dispatch(
+                saveProduct(images, name, description, category, gender, price)
+              )
             }
           />
         </div>

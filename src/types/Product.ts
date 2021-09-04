@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 
 export type Product = {
+  images: { id: string; path: string }[];
   name: string;
   description: string;
   category: string;
