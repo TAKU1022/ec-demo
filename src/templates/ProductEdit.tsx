@@ -1,11 +1,13 @@
 import { ChangeEvent, useCallback, useState, VFC } from 'react';
 import { useDispatch } from 'react-redux';
+import { ImageArea } from '../components/products';
 import { PrimaryButton, SelectBox, TextInput } from '../components/UIkit';
 import { saveProduct } from '../reducks/products/operations';
 
 const ProductEdit: VFC = () => {
   const dispatch = useDispatch();
 
+  const [images, setImages] = useState([] as { id: string; path: string }[]);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -55,6 +57,7 @@ const ProductEdit: VFC = () => {
     <section>
       <h2 className="u-text__headline u-text-center">商品の登録・編集</h2>
       <div className="c-section-container">
+        <ImageArea images={images} setImages={setImages} />
         <TextInput
           fullWidth={true}
           label={'商品名'}
