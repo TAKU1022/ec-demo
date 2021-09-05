@@ -7,7 +7,9 @@ import { saveProduct } from '../reducks/products/operations';
 const ProductEdit: VFC = () => {
   const dispatch = useDispatch();
 
-  const [images, setImages] = useState([] as { id: string; path: string }[]);
+  const [images, setImages] = useState(
+    [] as Array<{ id: string; path: string }>
+  );
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');

@@ -13,8 +13,10 @@ const useStyles = makeStyles({
 });
 
 type Props = {
-  images: { id: string; path: string }[];
-  setImages: Dispatch<React.SetStateAction<{ id: string; path: string }[]>>;
+  images: Array<{ id: string; path: string }>;
+  setImages: Dispatch<
+    React.SetStateAction<Array<{ id: string; path: string }>>
+  >;
 };
 
 const ImageArea: VFC<Props> = memo((props: Props) => {

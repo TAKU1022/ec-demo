@@ -6,7 +6,7 @@ import { Product } from '../../types/Product';
 const productRef = db.collection('products');
 
 export const saveProduct = (
-  images: { id: string; path: string }[],
+  images: Array<{ id: string; path: string }>,
   name: string,
   description: string,
   category: string,
