@@ -2,13 +2,18 @@ import {
   Card,
   CardContent,
   CardMedia,
+  IconButton,
   makeStyles,
+  Menu,
+  MenuItem,
   Typography,
 } from '@material-ui/core';
+import { MoreVert } from '@material-ui/icons';
 import { push } from 'connected-react-router';
-import { VFC } from 'react';
+import { memo, MouseEvent, useState, VFC } from 'react';
 import { useDispatch } from 'react-redux';
 import NoImage from '../../assets/img/src/no_image.png';
+import { deleteProduct } from '../../reducks/products/operations';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,12 +51,20 @@ type Props = {
   price: number;
 };
 
-const ProductCard: VFC<Props> = (props: Props) => {
+const ProductCard: VFC<Props> = memo((props: Props) => {
   const { id, images, name, price } = props;
   const dispatch = useDispatch();
   const classes = useStyles();
 
   const productImage = images.length > 0 ? images : [{ path: NoImage }];
+
+  const [anchorElement, setAnchorElement] = useState(null);
+
+  const handleClick = (event: MouseEvent<any>) => {
+    setAnchorElement(event.currentTarget);
+  };
+
+  const handleClose = () => setAnchorElement(null);
 
   return (
     <Card className={classes.root}>
@@ -70,9 +83,35 @@ const ProductCard: VFC<Props> = (props: Props) => {
             ¥{price.toLocaleString()}
           </Typography>
         </div>
+        <IconButton onClick={handleClick}>
+          <MoreVert />
+        </IconButton>
+        <Menu
+          anchorEl={anchorElement}
+          keepMounted
+          open={Boolean(anchorElement)}
+          onClose={handleClose}
+        >
+          <MenuItem
+            onClick={() => {
+              dispatch(push(`/product/edit/${id}`));
+              handleClose();
+            }}
+          >
+            編集する
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              dispatch(deleteProduct(id));
+              handleClose();
+            }}
+          >
+            削除する
+          </MenuItem>
+        </Menu>
       </CardContent>
     </Card>
   );
-};
+});
 
 export default ProductCard;
