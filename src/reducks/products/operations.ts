@@ -1,9 +1,7 @@
-import { Dispatch } from 'react';
-import { CallHistoryMethodAction, push } from 'connected-react-router';
+import { push } from 'connected-react-router';
 import { db, FirebaseTimestamp } from '../../firebase';
 import { Product } from '../../types/Product';
 import { deleteProductAction, fetchProductsAction } from './actions';
-import { FetchProductsAction } from './types';
 import { RootState } from '../store/store';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
@@ -20,7 +18,7 @@ export const saveProduct = (
   price: string,
   sizes: Array<{ size: string; quantity: number }>
 ) => {
-  return async (dispatch: Dispatch<CallHistoryMethodAction>) => {
+  return async (dispatch: ThunkDispatch<RootState, unknown, Action>) => {
     const timestamp = FirebaseTimestamp.now();
 
     let data: Product | Omit<Product, 'id' | 'createdAt'> = {
@@ -58,7 +56,7 @@ export const saveProduct = (
 };
 
 export const fetchProducts = () => {
-  return async (dispatch: Dispatch<FetchProductsAction>) => {
+  return async (dispatch: ThunkDispatch<RootState, unknown, Action>) => {
     productRef
       .orderBy('updatedAt', 'desc')
       .get()

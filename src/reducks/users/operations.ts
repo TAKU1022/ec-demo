@@ -1,11 +1,12 @@
-import { CallHistoryMethodAction, push } from 'connected-react-router';
-import { Dispatch } from 'react';
+import { push } from 'connected-react-router';
+import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import { auth, db, FirebaseTimestamp } from '../../firebase';
+import { RootState } from '../store/store';
 import { signInAction, signOutAction } from './actions';
-import { SignInAction, SignOutAction } from './types';
 
 export const listenAuthState = () => {
-  return async (dispatch: Dispatch<SignInAction | CallHistoryMethodAction>) => {
+  return async (dispatch: ThunkDispatch<RootState, unknown, Action>) => {
     return auth.onAuthStateChanged((user) => {
       if (user) {
         const uid = user.uid;
@@ -33,7 +34,7 @@ export const listenAuthState = () => {
 };
 
 export const resetPassword = (email: string) => {
-  return async (dispatch: Dispatch<CallHistoryMethodAction>) => {
+  return async (dispatch: ThunkDispatch<RootState, unknown, Action>) => {
     if (email === '') {
       alert('必須項目が未入力です');
       return;
@@ -57,7 +58,7 @@ export const resetPassword = (email: string) => {
 };
 
 export const signIn = (email: string, password: string) => {
-  return async (dispatch: Dispatch<SignInAction | CallHistoryMethodAction>) => {
+  return async (dispatch: ThunkDispatch<RootState, unknown, Action>) => {
     if (email === '' || password === '') {
       alert('必須項目が未入力です');
       return;
@@ -97,7 +98,7 @@ export const signUp = (
   password: string,
   confirmPasword: string
 ) => {
-  return async (dispach: Dispatch<CallHistoryMethodAction>) => {
+  return async (dispach: ThunkDispatch<RootState, unknown, Action>) => {
     if (
       username === '' ||
       email === '' ||
@@ -141,9 +142,7 @@ export const signUp = (
 };
 
 export const signOut = () => {
-  return async (
-    dispatch: Dispatch<SignOutAction | CallHistoryMethodAction>
-  ) => {
+  return async (dispatch: ThunkDispatch<RootState, unknown, Action>) => {
     auth.signOut().then(() => {
       dispatch(signOutAction());
 
