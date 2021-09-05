@@ -8,7 +8,7 @@ type Props = {
   multiline: boolean;
   minRows: number | string;
   required: boolean;
-  value: string;
+  value: string | number;
   type: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
