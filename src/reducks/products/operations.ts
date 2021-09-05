@@ -29,10 +29,10 @@ export const saveProduct = (
 
     if (id === '') {
       const ref = productRef.doc();
-      const docId = ref.id;
+      id = ref.id;
       const newData: Product = {
         ...data,
-        id: docId,
+        id,
         createdAt: timestamp,
       };
       data = newData;
