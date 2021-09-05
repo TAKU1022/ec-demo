@@ -1,11 +1,17 @@
-import { ChangeEvent, useCallback, useState, VFC } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState, VFC } from 'react';
 import { useDispatch } from 'react-redux';
 import { ImageArea } from '../components/products';
 import { PrimaryButton, SelectBox, TextInput } from '../components/UIkit';
+import { db } from '../firebase';
 import { saveProduct } from '../reducks/products/operations';
 
 const ProductEdit: VFC = () => {
   const dispatch = useDispatch();
+
+  let id = window.location.pathname.split('/product/edit')[1];
+  if (id !== '') {
+    id = id.split('/')[1];
+  }
 
   const [images, setImages] = useState(
     [] as Array<{ id: string; path: string }>
@@ -54,6 +60,23 @@ const ProductEdit: VFC = () => {
     (event: ChangeEvent<HTMLInputElement>) => setPrice(event.target.value),
     [setPrice]
   );
+
+  useEffect(() => {
+    if (id !== '') {
+      db.collection('products')
+        .doc(id)
+        .get()
+        .then((snapshot) => {
+          const data = snapshot.data();
+          setImages(data?.images);
+          setName(data?.name);
+          setDescription(data?.description);
+          setCategory(data?.category);
+          setGender(data?.gender);
+          setPrice(data?.price);
+        });
+    }
+  }, [id]);
 
   return (
     <section>
@@ -110,7 +133,15 @@ const ProductEdit: VFC = () => {
             label={'商品情報を保存'}
             onClick={() =>
               dispatch(
-                saveProduct(images, name, description, category, gender, price)
+                saveProduct(
+                  id,
+                  images,
+                  name,
+                  description,
+                  category,
+                  gender,
+                  price
+                )
               )
             }
           />

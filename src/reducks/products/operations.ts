@@ -6,6 +6,7 @@ import { Product } from '../../types/Product';
 const productRef = db.collection('products');
 
 export const saveProduct = (
+  id: string,
   images: Array<{ id: string; path: string }>,
   name: string,
   description: string,
@@ -16,24 +17,30 @@ export const saveProduct = (
   return async (dispatch: Dispatch<CallHistoryMethodAction>) => {
     const timestamp = FirebaseTimestamp.now();
 
-    const ref = productRef.doc();
-    const id = ref.id;
-
-    const data: Product = {
+    let data: Product | Omit<Product, 'id' | 'createdAt'> = {
       images,
       name,
       description,
       category,
       gender,
       price: parseInt(price, 10),
-      createdAt: timestamp,
       updatedAt: timestamp,
-      id,
     };
+
+    if (id === '') {
+      const ref = productRef.doc();
+      const docId = ref.id;
+      const newData: Product = {
+        ...data,
+        id: docId,
+        createdAt: timestamp,
+      };
+      data = newData;
+    }
 
     return productRef
       .doc(id)
-      .set(data)
+      .set(data, { merge: true })
       .then(() => {
         dispatch(push('/'));
       })
