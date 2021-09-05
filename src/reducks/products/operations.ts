@@ -2,8 +2,11 @@ import { Dispatch } from 'react';
 import { CallHistoryMethodAction, push } from 'connected-react-router';
 import { db, FirebaseTimestamp } from '../../firebase';
 import { Product } from '../../types/Product';
-import { fetchProductsAction } from './actions';
+import { deleteProductAction, fetchProductsAction } from './actions';
 import { FetchProductsAction } from './types';
+import { RootState } from '../store/store';
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
 
 const productRef = db.collection('products');
 
@@ -70,6 +73,25 @@ export const fetchProducts = () => {
         const products: Product[] = [...productList];
 
         dispatch(fetchProductsAction(products));
+      });
+  };
+};
+
+export const deleteProduct = (id: string) => {
+  return async (
+    dispatch: ThunkDispatch<RootState, unknown, Action>,
+    getState: () => RootState
+  ) => {
+    productRef
+      .doc(id)
+      .delete()
+      .then(() => {
+        const prevProducts = getState().products.list;
+        const nextProducts = prevProducts.filter(
+          (product) => product.id !== id
+        );
+
+        dispatch(deleteProductAction(nextProducts));
       });
   };
 };
