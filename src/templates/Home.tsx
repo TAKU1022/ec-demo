@@ -2,7 +2,7 @@ import { VFC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../reducks/store/store';
 import { signOut } from '../reducks/users/operations';
-import { getUserId, getUsername } from '../reducks/users/selecter';
+import { getUserId, getUsername } from '../reducks/users/selectors';
 
 const Home: VFC = () => {
   const dispatch = useDispatch();

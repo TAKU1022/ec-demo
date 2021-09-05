@@ -2,7 +2,7 @@ import { ReactNode, useEffect, VFC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './reducks/store/store';
 import { listenAuthState } from './reducks/users/operations';
-import { getIsSignedIn } from './reducks/users/selecter';
+import { getIsSignedIn } from './reducks/users/selectors';
 
 type Props = {
   children: ReactNode;
