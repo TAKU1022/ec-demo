@@ -1,7 +1,9 @@
+import { ProductsState } from '../products/types';
 import { UserState } from '../users/types';
 
 export type State = {
   users: UserState;
+  products: ProductsState;
 };
 
 export const initialState: State = {
@@ -10,5 +12,8 @@ export const initialState: State = {
     role: '',
     uid: '',
     username: '',
+  },
+  products: {
+    list: [],
   },
 };
