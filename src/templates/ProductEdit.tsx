@@ -2,6 +2,7 @@ import { ChangeEvent, useCallback, useEffect, useState, VFC } from 'react';
 import { useDispatch } from 'react-redux';
 import { ImageArea } from '../components/products';
 import { PrimaryButton, SelectBox, TextInput } from '../components/UIkit';
+import { SetSizeArea } from '../components/products';
 import { db } from '../firebase';
 import { saveProduct } from '../reducks/products/operations';
 
@@ -21,6 +22,9 @@ const ProductEdit: VFC = () => {
   const [category, setCategory] = useState('');
   const [gender, setGender] = useState('');
   const [price, setPrice] = useState('');
+  const [sizes, setSizes] = useState(
+    [] as Array<{ size: string; quantity: number }>
+  );
 
   const categories = [
     { id: 'tops', name: 'トップス' },
@@ -74,6 +78,7 @@ const ProductEdit: VFC = () => {
           setCategory(data?.category);
           setGender(data?.gender);
           setPrice(data?.price);
+          setSizes(data?.sizes);
         });
     }
   }, [id]);
@@ -127,7 +132,9 @@ const ProductEdit: VFC = () => {
           type={'number'}
           onChange={inputPrice}
         />
-        <div className="module-spacer--medium"></div>
+        <div className="module-spacer--small"></div>
+        <SetSizeArea sizes={sizes} setSizes={setSizes} />
+        <div className="module-spacer--small"></div>
         <div className="center">
           <PrimaryButton
             label={'商品情報を保存'}
@@ -140,7 +147,8 @@ const ProductEdit: VFC = () => {
                   description,
                   category,
                   gender,
-                  price
+                  price,
+                  sizes
                 )
               )
             }

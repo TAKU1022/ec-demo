@@ -12,7 +12,8 @@ export const saveProduct = (
   description: string,
   category: string,
   gender: string,
-  price: string
+  price: string,
+  sizes: Array<{ size: string; quantity: number }>
 ) => {
   return async (dispatch: Dispatch<CallHistoryMethodAction>) => {
     const timestamp = FirebaseTimestamp.now();
@@ -24,6 +25,7 @@ export const saveProduct = (
       category,
       gender,
       price: parseInt(price, 10),
+      sizes,
       updatedAt: timestamp,
     };
 
