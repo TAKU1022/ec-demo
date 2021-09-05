@@ -1,7 +1,7 @@
 import { VFC } from 'react';
 import { Route, Switch } from 'react-router';
 import Auth from '../Auth';
-import { Home, ProductEdit, Reset, SignIn, SignUp } from '../templates';
+import { ProductEdit, ProductList, Reset, SignIn, SignUp } from '../templates';
 
 const Router: VFC = () => {
   return (
@@ -11,7 +11,7 @@ const Router: VFC = () => {
       <Route exact path="/signin/reset" component={Reset}></Route>
 
       <Auth>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={ProductList} />
         <Route path="/product/edit/(:id)?" component={ProductEdit} />
       </Auth>
     </Switch>
