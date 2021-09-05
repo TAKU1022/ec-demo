@@ -3,6 +3,7 @@ import { CallHistoryMethodAction, push } from 'connected-react-router';
 import { db, FirebaseTimestamp } from '../../firebase';
 import { Product } from '../../types/Product';
 import { fetchProductsAction } from './actions';
+import { FetchProductsAction } from './types';
 
 const productRef = db.collection('products');
 
@@ -54,7 +55,7 @@ export const saveProduct = (
 };
 
 export const fetchProducts = () => {
-  return async (dispatch: any) => {
+  return async (dispatch: Dispatch<FetchProductsAction>) => {
     productRef
       .orderBy('updatedAt', 'desc')
       .get()
