@@ -2,6 +2,7 @@ import { Dispatch } from 'react';
 import { CallHistoryMethodAction, push } from 'connected-react-router';
 import { db, FirebaseTimestamp } from '../../firebase';
 import { Product } from '../../types/Product';
+import { fetchProductsAction } from './actions';
 
 const productRef = db.collection('products');
 
@@ -48,6 +49,26 @@ export const saveProduct = (
       })
       .catch((error) => {
         throw new Error(error);
+      });
+  };
+};
+
+export const fetchProducts = () => {
+  return async (dispatch: any) => {
+    productRef
+      .orderBy('updatedAt', 'desc')
+      .get()
+      .then((snapshots) => {
+        const productList: any[] = [];
+
+        snapshots.forEach((snapshot) => {
+          const product = snapshot.data();
+          productList.push(product);
+        });
+
+        const products: Product[] = [...productList];
+
+        dispatch(fetchProductsAction(products));
       });
   };
 };
