@@ -28,7 +28,7 @@ const ImageSwiper: VFC<Props> = (props: Props) => {
     <Swiper {...params}>
       {images.length === 0 ? (
         <div className="p-media__thumb">
-          <img src={NoImage} alt="no image" />
+          <img src={NoImage} alt="商品画像が存在しておりません" />
         </div>
       ) : (
         images.map((image) => (
