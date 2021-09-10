@@ -19,6 +19,7 @@ import { createStyles, makeStyles } from '@material-ui/styles';
 import { push } from 'connected-react-router';
 import { ChangeEvent, MouseEvent, useCallback, useState, VFC } from 'react';
 import { useDispatch } from 'react-redux';
+import { signOut } from '../../reducks/users/operations';
 import { TextInput } from '../UIkit';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
 type Props = {
   container?: any;
   isOpen: boolean;
-  onClose: (event: {}) => void;
+  onClose: (event: any) => void;
 };
 
 const ClosableDrawer: VFC<Props> = (props: Props) => {
@@ -132,7 +133,7 @@ const ClosableDrawer: VFC<Props> = (props: Props) => {
                 <ListItemText primary={menu.label} />
               </ListItem>
             ))}
-            <ListItem button key="logout">
+            <ListItem button key="logout" onClick={() => dispatch(signOut())}>
               <ListItemIcon>
                 <ExitToApp />
               </ListItemIcon>
