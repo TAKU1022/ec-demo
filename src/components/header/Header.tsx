@@ -6,6 +6,7 @@ import { RootState } from '../../reducks/store/store';
 import { getIsSignedIn } from '../../reducks/users/selectors';
 import logo from '../../assets/img/icons/logo.png';
 import { push } from 'connected-react-router';
+import { HeaderMenus } from '.';
 
 const useStyles = makeStyles(
   createStyles({
@@ -43,6 +44,11 @@ const Header: VFC = () => {
             width="128px"
             onClick={() => dispatch(push('/'))}
           />
+          {isSignedIn && (
+            <div className={classes.iconButtons}>
+              <HeaderMenus />
+            </div>
+          )}
         </Toolbar>
       </AppBar>
     </header>
