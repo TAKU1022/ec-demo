@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core';
 import HTMLReactParser from 'html-react-parser';
 import { useEffect, useState, VFC } from 'react';
 import { useSelector } from 'react-redux';
-import { ImageSwiper } from '../components/products';
+import { ImageSwiper, SizeTable } from '../components/products';
 import { db } from '../firebase';
 import { RootState } from '../reducks/store/store';
 import { Product } from '../types/Product';
@@ -76,6 +76,7 @@ const ProductDetail: VFC = () => {
             <h2 className="u-text__headline">{product.name}</h2>
             <p className={classes.price}>{product.price.toLocaleString()}</p>
             <div className="module-spacer--small" />
+            <SizeTable sizes={product.sizes} />
             <div className="module-spacer--small" />
             <p>{returnCodeToBr(product.description)}</p>
           </div>
