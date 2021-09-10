@@ -1,12 +1,17 @@
 import Router from './router/Router';
 import './assets/reset.css';
 import './assets/style.css';
+import { Header } from './components/header';
 
 const App = () => {
   return (
-    <main>
-      <Router />
-    </main>
+    <>
+      <Header />
+
+      <main className="c-main">
+        <Router />
+      </main>
+    </>
   );
 };
 
