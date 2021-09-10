@@ -1,8 +1,16 @@
-import { memo, VFC } from 'react';
+import { memo, MouseEvent, VFC } from 'react';
 import { Badge, IconButton } from '@material-ui/core';
 import { FavoriteBorder, Menu, ShoppingCart } from '@material-ui/icons';
 
-const HeaderMenus: VFC = memo(() => {
+type Props = {
+  handleDrawerToggle: (
+    event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>
+  ) => void;
+};
+
+const HeaderMenus: VFC<Props> = memo((props: Props) => {
+  const { handleDrawerToggle } = props;
+
   return (
     <>
       <IconButton>
@@ -13,7 +21,7 @@ const HeaderMenus: VFC = memo(() => {
       <IconButton>
         <FavoriteBorder />
       </IconButton>
-      <IconButton>
+      <IconButton onClick={handleDrawerToggle}>
         <Menu />
       </IconButton>
     </>
