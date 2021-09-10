@@ -1,4 +1,5 @@
-import { makeStyles } from '@material-ui/core';
+import { Theme } from '@material-ui/core';
+import { createStyles, makeStyles } from '@material-ui/styles';
 import HTMLReactParser from 'html-react-parser';
 import { useEffect, useState, VFC } from 'react';
 import { useSelector } from 'react-redux';
@@ -7,36 +8,38 @@ import { db } from '../firebase';
 import { RootState } from '../reducks/store/store';
 import { Product } from '../types/Product';
 
-const useStyles = makeStyles((theme) => ({
-  sliderBox: {
-    [theme.breakpoints.down('sm')]: {
-      margin: '0 auto 24px auto',
-      width: 320,
-      height: 320,
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    sliderBox: {
+      [theme.breakpoints.down('sm')]: {
+        margin: '0 auto 24px auto',
+        width: 320,
+        height: 320,
+      },
+      [theme.breakpoints.up('sm')]: {
+        margin: '0 auto',
+        width: 400,
+        height: 400,
+      },
     },
-    [theme.breakpoints.up('sm')]: {
-      margin: '0 auto',
-      width: 400,
-      height: 400,
+    detail: {
+      textAlign: 'left',
+      [theme.breakpoints.down('sm')]: {
+        margin: '0 auto 16px auto',
+        width: 320,
+        height: 'auto',
+      },
+      [theme.breakpoints.up('sm')]: {
+        margin: '0 auto',
+        width: 400,
+        height: 'auto',
+      },
     },
-  },
-  detail: {
-    textAlign: 'left',
-    [theme.breakpoints.down('sm')]: {
-      margin: '0 auto 16px auto',
-      width: 320,
-      height: 'auto',
+    price: {
+      fontSize: 36,
     },
-    [theme.breakpoints.up('sm')]: {
-      margin: '0 auto',
-      width: 400,
-      height: 'auto',
-    },
-  },
-  price: {
-    fontSize: 36,
-  },
-}));
+  })
+);
 
 const returnCodeToBr = (text: string) => {
   if (text === '') {
