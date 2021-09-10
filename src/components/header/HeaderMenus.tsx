@@ -1,8 +1,8 @@
-import { VFC } from 'react';
+import { memo, VFC } from 'react';
 import { Badge, IconButton } from '@material-ui/core';
 import { FavoriteBorder, Menu, ShoppingCart } from '@material-ui/icons';
 
-const HeaderMenus: VFC = () => {
+const HeaderMenus: VFC = memo(() => {
   return (
     <>
       <IconButton>
@@ -18,6 +18,6 @@ const HeaderMenus: VFC = () => {
       </IconButton>
     </>
   );
-};
+});
 
 export default HeaderMenus;
