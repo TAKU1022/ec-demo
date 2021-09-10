@@ -4,7 +4,7 @@ import 'swiper/css/swiper.css';
 import NoImage from '../../assets/img/src/no_image.png';
 
 type Props = {
-  images: any[];
+  images: Array<{ id: string; path: string }>;
 };
 
 const ImageSwiper: VFC<Props> = (props: Props) => {
