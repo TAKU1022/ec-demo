@@ -4,7 +4,11 @@ import { ThunkDispatch } from 'redux-thunk';
 import { auth, db, FirebaseTimestamp } from '../../firebase';
 import { ProductsInCart } from '../../types/Cart';
 import { RootState } from '../store/store';
-import { signInAction, signOutAction } from './actions';
+import {
+  fetchProductsInCartAction,
+  signInAction,
+  signOutAction,
+} from './actions';
 
 export const listenAuthState = () => {
   return async (dispatch: ThunkDispatch<RootState, unknown, Action>) => {
@@ -168,5 +172,11 @@ export const addProductToCart = (
     });
 
     dispatch(push('/'));
+  };
+};
+
+export const fetchProductsInCart = (products: Array<ProductsInCart>) => {
+  return async (dispatch: ThunkDispatch<RootState, unknown, Action>) => {
+    dispatch(fetchProductsInCartAction(products));
   };
 };

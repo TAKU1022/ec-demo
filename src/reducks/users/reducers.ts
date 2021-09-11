@@ -17,6 +17,11 @@ export const UsersReducer = (
         ...state,
         ...action.payload,
       };
+    case ActionTypes.FETCH_PRODUCTS_IN_CART:
+      return {
+        ...state,
+        cart: [...action.payload],
+      };
     default:
       return state;
   }
