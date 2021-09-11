@@ -20,12 +20,13 @@ const useStyles = makeStyles({
 
 type Props = {
   sizes: Array<{ size: string; quantity: number }>;
+  addProduct: (selectedSize: string) => void;
 };
 
 const SizeTable: VFC<Props> = memo((props: Props) => {
   const classes = useStyles();
 
-  const { sizes } = props;
+  const { sizes, addProduct } = props;
 
   return (
     <TableContainer>
@@ -40,7 +41,7 @@ const SizeTable: VFC<Props> = memo((props: Props) => {
                 <TableCell>残り{size.quantity}点</TableCell>
                 <TableCell className={classes.iconCell}>
                   {size.quantity > 0 ? (
-                    <IconButton>
+                    <IconButton onClick={() => addProduct(size.size)}>
                       <ShoppingCart />
                     </IconButton>
                   ) : (

@@ -1,11 +1,12 @@
 import { Theme } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/styles';
 import HTMLReactParser from 'html-react-parser';
-import { useEffect, useState, VFC } from 'react';
-import { useSelector } from 'react-redux';
+import { useCallback, useEffect, useState, VFC } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ImageSwiper, SizeTable } from '../components/products';
-import { db } from '../firebase';
+import { db, FirebaseTimestamp } from '../firebase';
 import { RootState } from '../reducks/store/store';
+import { addProductToCart } from '../reducks/users/operations';
 import { Product } from '../types/Product';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -51,12 +52,33 @@ const returnCodeToBr = (text: string) => {
 
 const ProductDetail: VFC = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const selector = useSelector((state: RootState) => state);
   const router = selector.router as any;
   const path = router.location.pathname;
   const id = path.split('/product/')[1];
 
   const [product, setProduct] = useState<Product>();
+
+  const addProduct = useCallback(
+    (selectedSize) => {
+      const timestamp = FirebaseTimestamp.now();
+      dispatch(
+        addProductToCart({
+          addedAt: timestamp,
+          description: product?.description,
+          gender: product?.gender,
+          images: product?.images,
+          name: product?.name,
+          price: product?.price,
+          productId: product?.id,
+          quantity: 1,
+          size: selectedSize,
+        })
+      );
+    },
+    [product, dispatch]
+  );
 
   useEffect(() => {
     db.collection('products')
@@ -79,7 +101,7 @@ const ProductDetail: VFC = () => {
             <h2 className="u-text__headline">{product.name}</h2>
             <p className={classes.price}>{product.price.toLocaleString()}</p>
             <div className="module-spacer--small" />
-            <SizeTable sizes={product.sizes} />
+            <SizeTable sizes={product.sizes} addProduct={addProduct} />
             <div className="module-spacer--small" />
             <p>{returnCodeToBr(product.description)}</p>
           </div>
