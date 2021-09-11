@@ -112,7 +112,7 @@ export const orderProduct = (
 
     const batch = db.batch();
 
-    productsInCart.forEach(async (product) => {
+    for (const product of productsInCart) {
       const snapshot = await productRef.doc(product.productId).get();
       const sizes: Array<{ size: string; quantity: number }> =
         snapshot.data()?.sizes;
@@ -144,7 +144,7 @@ export const orderProduct = (
       batch.update(productRef.doc(product.productId), { sizes: updatedSizes });
 
       batch.delete(userRef.collection('cart').doc(product.cartId));
-    });
+    }
 
     if (soldOutProducts.length > 0) {
       const errorMessage =
