@@ -2,6 +2,7 @@ import { VFC } from 'react';
 import { Route, Switch } from 'react-router';
 import Auth from '../Auth';
 import {
+  CartList,
   ProductDetail,
   ProductEdit,
   ProductList,
@@ -21,6 +22,7 @@ const Router: VFC = () => {
         <Route exact path="/" component={ProductList} />
         <Route exact path="/product/:id" component={ProductDetail} />
         <Route path="/product/edit/(:id)?" component={ProductEdit} />
+        <Route exact path="/cart" component={CartList} />
       </Auth>
     </Switch>
   );
