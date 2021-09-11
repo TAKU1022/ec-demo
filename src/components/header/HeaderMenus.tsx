@@ -7,6 +7,7 @@ import { getProductsInCart, getUserId } from '../../reducks/users/selectors';
 import { db } from '../../firebase';
 import { ProductsInCart } from '../../types/Cart';
 import { fetchProductsInCart } from '../../reducks/users/operations';
+import { push } from 'connected-react-router';
 
 type Props = {
   handleDrawerToggle: (
@@ -61,7 +62,7 @@ const HeaderMenus: VFC<Props> = memo((props: Props) => {
 
   return (
     <>
-      <IconButton>
+      <IconButton onClick={() => dispatch(push('/cart'))}>
         <Badge badgeContent={productsInCart.length} color="secondary">
           <ShoppingCart />
         </Badge>
