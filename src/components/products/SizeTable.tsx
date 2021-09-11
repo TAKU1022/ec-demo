@@ -1,4 +1,4 @@
-import { VFC } from 'react';
+import { memo, VFC } from 'react';
 import {
   IconButton,
   makeStyles,
@@ -22,7 +22,7 @@ type Props = {
   sizes: Array<{ size: string; quantity: number }>;
 };
 
-const SizeTable: VFC<Props> = (props: Props) => {
+const SizeTable: VFC<Props> = memo((props: Props) => {
   const classes = useStyles();
 
   const { sizes } = props;
@@ -58,6 +58,6 @@ const SizeTable: VFC<Props> = (props: Props) => {
       </Table>
     </TableContainer>
   );
-};
+});
 
 export default SizeTable;
