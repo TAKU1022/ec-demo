@@ -105,7 +105,7 @@ const ClosableDrawer: VFC<Props> = (props: Props) => {
         ModalProps={{ keepMounted: true }}
         onClose={onClose}
       >
-        <div>
+        <div onClick={onClose} onKeyDown={onClose}>
           <div className={classes.searchField}>
             <TextInput
               fullWidth={false}
