@@ -1,4 +1,4 @@
-import { ProductsInCart } from '../../types/Cart';
+import { ProductInCart } from '../../types/Cart';
 import { FETCH_PRODUCTS_IN_CART, SIGN_IN, SIGN_OUT } from './actionTypes';
 import {
   FetchProductsInCartAction,
@@ -36,7 +36,7 @@ export const signOutAction = (): SignOutAction => {
 };
 
 export const fetchProductsInCartAction = (
-  products: Array<ProductsInCart>
+  products: Array<ProductInCart>
 ): FetchProductsInCartAction => {
   return {
     type: FETCH_PRODUCTS_IN_CART,

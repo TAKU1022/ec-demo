@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import { db } from '../../firebase';
 import { RootState } from '../../reducks/store/store';
 import { getUserId } from '../../reducks/users/selectors';
-import { ProductsInCart } from '../../types/Cart';
+import { ProductInCart } from '../../types/Cart';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type Props = {
-  product: ProductsInCart;
+  product: ProductInCart;
 };
 
 const CartListItem: VFC<Props> = (props: Props) => {

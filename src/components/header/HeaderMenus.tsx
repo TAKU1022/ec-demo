@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../reducks/store/store';
 import { getProductsInCart, getUserId } from '../../reducks/users/selectors';
 import { db } from '../../firebase';
-import { ProductsInCart } from '../../types/Cart';
+import { ProductInCart } from '../../types/Cart';
 import { fetchProductsInCart } from '../../reducks/users/operations';
 import { push } from 'connected-react-router';
 
@@ -35,13 +35,13 @@ const HeaderMenus: VFC<Props> = memo((props: Props) => {
 
           switch (changeType) {
             case 'added':
-              productsInCart.push(productData as ProductsInCart);
+              productsInCart.push(productData as ProductInCart);
               break;
             case 'modified':
               const index = productsInCart.findIndex(
                 (product) => product.cartId === change.doc.id
               );
-              productsInCart[index] = productData as ProductsInCart;
+              productsInCart[index] = productData as ProductInCart;
               break;
             case 'removed':
               // eslint-disable-next-line react-hooks/exhaustive-deps
