@@ -2,7 +2,7 @@ import { push } from 'connected-react-router';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { auth, db, FirebaseTimestamp } from '../../firebase';
-import { Cart } from '../../types/Cart';
+import { ProductsInCart } from '../../types/Cart';
 import { RootState } from '../store/store';
 import { signInAction, signOutAction } from './actions';
 
@@ -152,7 +152,9 @@ export const signOut = () => {
   };
 };
 
-export const addProductToCart = (addedProduct: Omit<Cart, 'cartId'>) => {
+export const addProductToCart = (
+  addedProduct: Omit<ProductsInCart, 'cartId'>
+) => {
   return async (
     dispatch: ThunkDispatch<RootState, unknown, Action>,
     getState: () => RootState

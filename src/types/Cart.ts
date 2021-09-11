@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-export type Cart = {
+export type ProductsInCart = {
   addedAt: firebase.firestore.Timestamp;
   description: string | undefined;
   gender: string | undefined;

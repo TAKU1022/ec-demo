@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { Cart } from '../../types/Cart';
+import { ProductsInCart } from '../../types/Cart';
 import { SIGN_IN, SIGN_OUT } from './actionTypes';
 
 export type UserState = {
@@ -7,7 +7,7 @@ export type UserState = {
   role: string;
   uid: string;
   username: string;
-  cart: Array<Cart>;
+  cart: Array<ProductsInCart>;
 };
 
 export interface SignInAction extends Action {
