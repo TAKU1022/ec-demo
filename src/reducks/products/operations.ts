@@ -107,7 +107,7 @@ export const orderProduct = (
     const userRef = db.collection('users').doc(uid);
     const timestamp = FirebaseTimestamp.now();
 
-    let products: any = {};
+    let products: any[] = [];
     let soldOutProducts: Array<string> = [];
 
     const batch = db.batch();
@@ -133,13 +133,13 @@ export const orderProduct = (
         }
       });
 
-      products[product.productId as string] = {
+      products.push({
         id: product.productId,
         images: product.images,
         name: product.name,
         price: product.price,
         size: product.size,
-      };
+      });
 
       batch.update(productRef.doc(product.productId), { sizes: updatedSizes });
 
