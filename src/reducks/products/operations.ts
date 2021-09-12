@@ -6,6 +6,8 @@ import { RootState } from '../store/store';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import { ProductInCart } from '../../types/Cart';
+import { fetchOrdersHistoryAction } from '../users/actions';
+import { OrdersHistory } from '../../types/Order';
 
 const productRef = db.collection('products');
 
@@ -171,7 +173,7 @@ export const orderProduct = (
             id: orderRef.id,
             products,
             shippingDate,
-            updatedUp: timestamp,
+            updatedAt: timestamp,
           };
 
           orderRef.set(history);
@@ -185,5 +187,29 @@ export const orderProduct = (
           return;
         });
     }
+  };
+};
+
+export const fetchOrdersHistory = () => {
+  return async (
+    dispatch: ThunkDispatch<RootState, unknown, Action>,
+    getState: () => RootState
+  ) => {
+    const uid = getState().users.uid;
+    const list: any[] = [];
+
+    db.collection('users')
+      .doc(uid)
+      .collection('orders')
+      .orderBy('updatedAt', 'desc')
+      .get()
+      .then((snapshots) => {
+        snapshots.forEach((snapshot) => {
+          const data = snapshot.data();
+          list.push(data);
+        });
+
+        dispatch(fetchOrdersHistoryAction(list as Array<OrdersHistory>));
+      });
   };
 };

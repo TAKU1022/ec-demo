@@ -1,6 +1,13 @@
 import { ProductInCart } from '../../types/Cart';
-import { FETCH_PRODUCTS_IN_CART, SIGN_IN, SIGN_OUT } from './actionTypes';
+import { OrdersHistory } from '../../types/Order';
 import {
+  FETCH_ORDERS_HISTORY,
+  FETCH_PRODUCTS_IN_CART,
+  SIGN_IN,
+  SIGN_OUT,
+} from './actionTypes';
+import {
+  FetchOrdersHistoryAction,
   FetchProductsInCartAction,
   SignInAction,
   SignOutAction,
@@ -8,7 +15,7 @@ import {
 } from './types';
 
 export const signInAction = (
-  userState: Omit<UserState, 'cart'>
+  userState: Omit<UserState, 'cart' | 'orders'>
 ): SignInAction => {
   const { isSignedIn, role, uid, username } = userState;
 
@@ -41,5 +48,14 @@ export const fetchProductsInCartAction = (
   return {
     type: FETCH_PRODUCTS_IN_CART,
     payload: products,
+  };
+};
+
+export const fetchOrdersHistoryAction = (
+  history: Array<OrdersHistory>
+): FetchOrdersHistoryAction => {
+  return {
+    type: FETCH_ORDERS_HISTORY,
+    payload: history,
   };
 };

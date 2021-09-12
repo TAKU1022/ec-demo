@@ -22,6 +22,11 @@ export const UsersReducer = (
         ...state,
         cart: [...action.payload],
       };
+    case ActionTypes.FETCH_ORDERS_HISTORY:
+      return {
+        ...state,
+        orders: [...action.payload],
+      };
     default:
       return state;
   }
