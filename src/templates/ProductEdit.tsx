@@ -25,12 +25,10 @@ const ProductEdit: VFC = () => {
   const [sizes, setSizes] = useState(
     [] as Array<{ size: string; quantity: number }>
   );
+  const [categories, setCategories] = useState(
+    [] as Array<{ id: string; name: string }>
+  );
 
-  const categories = [
-    { id: 'tops', name: 'トップス' },
-    { id: 'shirts', name: 'シャツ' },
-    { id: 'pants', name: 'パンツ' },
-  ];
   const genders = [
     { id: 'all', name: '全て' },
     { id: 'male', name: 'メンズ' },
@@ -82,6 +80,22 @@ const ProductEdit: VFC = () => {
         });
     }
   }, [id]);
+
+  useEffect(() => {
+    db.collection('categories')
+      .get()
+      .then((snapshots) => {
+        const list: Array<{ id: string; name: string }> = [];
+        snapshots.forEach((snapshot) => {
+          const data = snapshot.data();
+          list.push({
+            id: data.id,
+            name: data.name,
+          });
+        });
+        setCategories(list);
+      });
+  }, []);
 
   return (
     <section>
