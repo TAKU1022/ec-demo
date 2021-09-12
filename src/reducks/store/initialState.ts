@@ -13,6 +13,7 @@ export const initialState: State = {
     uid: '',
     username: '',
     cart: [],
+    orders: [],
   },
   products: {
     list: [],
