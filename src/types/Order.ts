@@ -12,5 +12,5 @@ export type OrdersHistory = {
     size: string;
   }>;
   shippingDate: firebase.firestore.Timestamp;
-  updatedUt: firebase.firestore.Timestamp;
+  updatedAt: firebase.firestore.Timestamp;
 };
