@@ -6,7 +6,7 @@ export type OrdersHistory = {
   id: string;
   products: Array<{
     id: string;
-    image: Array<{ id: string; path: string }>;
+    images: Array<{ id: string; path: string }>;
     name: string;
     price: string;
     size: string;
