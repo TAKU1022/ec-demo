@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 
 export type OrdersHistory = {
-  amout: number;
+  amount: number;
   createdAt: firebase.firestore.Timestamp;
   id: string;
   products: Array<{
