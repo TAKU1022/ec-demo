@@ -10,9 +10,16 @@ const ProductList: VFC = () => {
   const selector = useSelector((state: RootState) => state);
   const products = getProductList(selector);
 
+  const router = selector.router as any;
+  const query = router.location.search;
+  const gender = /^\?gender=/.test(query) ? query.split('?gender=')[1] : '';
+  const category = /^\?category=/.test(query)
+    ? query.split('?category=')[1]
+    : '';
+
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, []); // eslint-disable-line
+    dispatch(fetchProducts(gender, category));
+  }, [dispatch, gender, category]);
 
   return (
     <section className="c-section-wrapin">

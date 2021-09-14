@@ -58,23 +58,24 @@ export const saveProduct = (
   };
 };
 
-export const fetchProducts = () => {
+export const fetchProducts = (gender: string, category: string) => {
   return async (dispatch: ThunkDispatch<RootState, unknown, Action>) => {
-    productRef
-      .orderBy('updatedAt', 'desc')
-      .get()
-      .then((snapshots) => {
-        const productList: any[] = [];
+    let query = productRef.orderBy('updatedAt', 'desc');
+    query = gender !== '' ? query.where('gender', '==', gender) : query;
+    query = category !== '' ? query.where('category', '==', category) : query;
 
-        snapshots.forEach((snapshot) => {
-          const product = snapshot.data();
-          productList.push(product);
-        });
+    query.get().then((snapshots) => {
+      const productList: any[] = [];
 
-        const products: Product[] = [...productList];
-
-        dispatch(fetchProductsAction(products));
+      snapshots.forEach((snapshot) => {
+        const product = snapshot.data();
+        productList.push(product);
       });
+
+      const products: Product[] = [...productList];
+
+      dispatch(fetchProductsAction(products));
+    });
   };
 };
 
