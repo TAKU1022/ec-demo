@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     content: {
       display: 'flex',
+      justifyContent: 'space-between',
       padding: '16px 8px',
       textAlign: 'left',
       '&:last-child': {
@@ -89,6 +90,7 @@ const ProductCard: VFC<Props> = memo((props: Props) => {
         <IconButton onClick={handleClick}>
           <MoreVert />
         </IconButton>
+
         <Menu
           anchorEl={anchorElement}
           keepMounted
