@@ -24,3 +24,8 @@ export const getOrdersHistory = createSelector(
   [usersSelector],
   (state) => state.orders
 );
+
+export const getUserRole = createSelector(
+  [usersSelector],
+  (state) => state.role
+);

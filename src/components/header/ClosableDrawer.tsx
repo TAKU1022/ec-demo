@@ -25,9 +25,11 @@ import {
   useState,
   VFC,
 } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { db } from '../../firebase';
+import { RootState } from '../../reducks/store/store';
 import { signOut } from '../../reducks/users/operations';
+import { getUserRole } from '../../reducks/users/selectors';
 import { TextInput } from '../UIkit';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -60,6 +62,9 @@ const ClosableDrawer: VFC<Props> = (props: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { container, isOpen, onClose } = props;
+  const selector = useSelector((state: RootState) => state);
+  const userRole = getUserRole(selector);
+  const isAdministrator = userRole === 'administrator';
 
   const [keyword, setKeyword] = useState('');
 
@@ -161,16 +166,20 @@ const ClosableDrawer: VFC<Props> = (props: Props) => {
           </div>
           <Divider />
           <List>
-            {menus.map((menu) => (
-              <ListItem
-                button
-                key={menu.id}
-                onClick={(event) => menu.func(menu.value, event)}
-              >
-                <ListItemIcon>{menu.icon}</ListItemIcon>
-                <ListItemText primary={menu.label} />
-              </ListItem>
-            ))}
+            {menus.map(
+              (menu) =>
+                ((isAdministrator && menu.id === 'register') ||
+                  menu.id !== 'register') && (
+                  <ListItem
+                    button
+                    key={menu.id}
+                    onClick={(event) => menu.func(menu.value, event)}
+                  >
+                    <ListItemIcon>{menu.icon}</ListItemIcon>
+                    <ListItemText primary={menu.label} />
+                  </ListItem>
+                )
+            )}
             <ListItem button key="logout" onClick={() => dispatch(signOut())}>
               <ListItemIcon>
                 <ExitToApp />
