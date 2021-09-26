@@ -12,9 +12,11 @@ import { MoreVert } from '@material-ui/icons';
 import { createStyles, makeStyles } from '@material-ui/styles';
 import { push } from 'connected-react-router';
 import { memo, MouseEvent, useState, VFC } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import NoImage from '../../assets/img/src/no_image.png';
 import { deleteProduct } from '../../reducks/products/operations';
+import { RootState } from '../../reducks/store/store';
+import { getUserRole } from '../../reducks/users/selectors';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -59,6 +61,8 @@ const ProductCard: VFC<Props> = memo((props: Props) => {
   const { id, images, name, price } = props;
   const dispatch = useDispatch();
   const classes = useStyles();
+  const selector = useSelector((state: RootState) => state);
+  const userRole = getUserRole(selector);
 
   const productImage = images.length > 0 ? images : [{ path: NoImage }];
 
@@ -71,7 +75,7 @@ const ProductCard: VFC<Props> = memo((props: Props) => {
   const handleClose = () => setAnchorElement(null);
 
   return (
-    <Card className={classes.root}>
+    <Card className={`${classes.root} pointer`}>
       <CardMedia
         className={classes.media}
         image={productImage[0].path}
@@ -87,9 +91,11 @@ const ProductCard: VFC<Props> = memo((props: Props) => {
             ¥{price.toLocaleString()}
           </Typography>
         </div>
-        <IconButton onClick={handleClick}>
-          <MoreVert />
-        </IconButton>
+        {userRole === 'administrator' && (
+          <IconButton onClick={handleClick}>
+            <MoreVert />
+          </IconButton>
+        )}
 
         <Menu
           anchorEl={anchorElement}

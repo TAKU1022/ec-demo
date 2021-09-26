@@ -64,7 +64,6 @@ const ClosableDrawer: VFC<Props> = (props: Props) => {
   const { container, isOpen, onClose } = props;
   const selector = useSelector((state: RootState) => state);
   const userRole = getUserRole(selector);
-  const isAdministrator = userRole === 'administrator';
 
   const [keyword, setKeyword] = useState('');
 
@@ -168,7 +167,7 @@ const ClosableDrawer: VFC<Props> = (props: Props) => {
           <List>
             {menus.map(
               (menu) =>
-                ((isAdministrator && menu.id === 'register') ||
+                ((userRole === 'administrator' && menu.id === 'register') ||
                   menu.id !== 'register') && (
                   <ListItem
                     button

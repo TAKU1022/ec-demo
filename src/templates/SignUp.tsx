@@ -87,7 +87,7 @@ const SignUp: VFC = () => {
           }
         />
         <div className="module-spacer--medium"></div>
-        <p onClick={() => dispatch(push('/signin'))}>
+        <p className="pointer" onClick={() => dispatch(push('/signin'))}>
           アカウントをお持ちの方はこちら
         </p>
       </div>

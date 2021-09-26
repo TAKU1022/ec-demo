@@ -10,7 +10,7 @@ const ImagePreview: VFC<Props> = (props: Props) => {
   const { id, path, deleteImage } = props;
 
   return (
-    <div className="p-media__thumb" onClick={() => deleteImage(id)}>
+    <div className="p-media__thumb pointer" onClick={() => deleteImage(id)}>
       <img src={path} alt="プレビュー画像" />
     </div>
   );

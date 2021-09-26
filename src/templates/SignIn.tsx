@@ -52,10 +52,10 @@ const SignIn: VFC = () => {
           onClick={() => dispatch(signIn(email, password))}
         />
         <div className="module-spacer--medium"></div>
-        <p onClick={() => dispatch(push('/signup'))}>
+        <p className="pointer" onClick={() => dispatch(push('/signup'))}>
           アカウントをお持ちでない方はこちら
         </p>
-        <p onClick={() => dispatch(push('/signin/reset'))}>
+        <p className="pointer" onClick={() => dispatch(push('/signin/reset'))}>
           パスワードを忘れた方はこちら
         </p>
       </div>
