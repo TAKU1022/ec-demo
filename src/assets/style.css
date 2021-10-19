@@ -1,21 +1,43 @@
-/*********** Module Spacer ***********/
 .module-spacer--extra-extra-small {
   height: 12px;
 }
+
 .module-spacer--extra-small {
   height: 12px;
 }
+
 .module-spacer--small {
   height: 20px;
 }
+
 .module-spacer--medium {
   height: 32px;
 }
 
-/*********** Section ***********/
+@media screen and (min-width: 576px) {
+  .module-spacer--extra-extra-small {
+    height: 16px;
+  }
+
+  .module-spacer--extra-small {
+    height: 20px;
+  }
+
+  .module-spacer--small {
+    height: 32px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .module-spacer--medium {
+    height: 48px;
+  }
+}
+
 .c-main {
   padding: 96px 0;
 }
+
 .c-section-wrapin {
   margin: 0 auto;
   max-width: 575px;
@@ -23,6 +45,12 @@
   padding: 0 1rem;
   text-align: center;
   width: 100%;
+}
+
+@media screen and (min-width: 576px) {
+  .c-section-wrapin {
+    max-width: 1024px;
+  }
 }
 
 .c-section-container {
@@ -103,7 +131,6 @@
   height: auto;
 }
 
-/*********** Footer ***********/
 .l-footer {
   display: flex;
   flex-flow: row wrap;
@@ -149,29 +176,4 @@
 
 .pointer {
   cursor: pointer;
-}
-
-@media screen and (min-width: 576px) {
-  /*********** Module Spacer ***********/
-  .module-spacer--extra-extra-small {
-    height: 16px;
-  }
-  .module-spacer--extra-small {
-    height: 20px;
-  }
-  .module-spacer--small {
-    height: 32px;
-  }
-
-  /*********** Section ***********/
-  .c-section-wrapin {
-    max-width: 1024px;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  /*********** Module Spacer ***********/
-  .module-spacer--medium {
-    height: 48px;
-  }
 }
