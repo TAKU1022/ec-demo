@@ -57,7 +57,7 @@ const Header: VFC = () => {
       <AppBar position="fixed" className={classes.menuBar}>
         <Toolbar className={classes.toolBar}>
           <h1 className={classes.logo} onClick={() => dispatch(push('/'))}>
-            LOGO
+            EC-DEMO
           </h1>
           {isSignedIn && (
             <div className={classes.iconButtons}>
