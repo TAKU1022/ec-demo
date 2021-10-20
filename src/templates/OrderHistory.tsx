@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme: Theme) =>
         width: 768,
       },
     },
+    noneText: {
+      fontSize: '26px',
+    },
   })
 );
 
@@ -35,12 +38,15 @@ const OrderHistory: VFC = () => {
 
   return (
     <section className="c-section-wrapin">
-      <List className={classes.orderList}>
-        {orders.length > 0 &&
-          orders.map((order) => (
+      {orders.length > 0 ? (
+        <List className={classes.orderList}>
+          {orders.map((order) => (
             <OrderHistoryItem key={order.id} order={order} />
           ))}
-      </List>
+        </List>
+      ) : (
+        <p className={classes.noneText}>注文履歴はありません。</p>
+      )}
     </section>
   );
 };
