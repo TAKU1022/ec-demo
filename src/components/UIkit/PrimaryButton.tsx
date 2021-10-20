@@ -4,8 +4,8 @@ import { memo, VFC } from 'react';
 
 const useStyles = makeStyles({
   button: {
-    backgroundColor: '#4dd0e1',
-    color: '#000',
+    backgroundColor: '#ffd54f',
+    color: '#444',
     fontSize: 16,
     height: 48,
     width: 256,
