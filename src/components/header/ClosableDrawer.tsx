@@ -1,36 +1,21 @@
 import {
   Divider,
   Drawer,
-  IconButton,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Theme,
 } from '@material-ui/core';
-import {
-  AddCircle,
-  ExitToApp,
-  History,
-  Person,
-  Search,
-} from '@material-ui/icons';
+import { AddCircle, ExitToApp, History } from '@material-ui/icons';
 import { createStyles, makeStyles } from '@material-ui/styles';
 import { push } from 'connected-react-router';
-import {
-  ChangeEvent,
-  MouseEvent,
-  useCallback,
-  useEffect,
-  useState,
-  VFC,
-} from 'react';
+import { MouseEvent, useEffect, useState, VFC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from '../../firebase';
 import { RootState } from '../../reducks/store/store';
 import { signOut } from '../../reducks/users/operations';
 import { getUserRole } from '../../reducks/users/selectors';
-import { TextInput } from '../UIkit';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -64,15 +49,6 @@ const ClosableDrawer: VFC<Props> = (props: Props) => {
   const { container, isOpen, onClose } = props;
   const selector = useSelector((state: RootState) => state);
   const userRole = getUserRole(selector);
-
-  const [keyword, setKeyword] = useState('');
-
-  const inputKeyword = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      setKeyword(event.target.value);
-    },
-    [setKeyword]
-  );
 
   const selectMenu = (
     path: string,
@@ -108,13 +84,6 @@ const ClosableDrawer: VFC<Props> = (props: Props) => {
       id: 'history',
       value: '/order/history',
     },
-    {
-      func: selectMenu,
-      label: 'プロフィール',
-      icon: <Person />,
-      id: 'profile',
-      value: '/user/mypage',
-    },
   ];
 
   useEffect(() => {
@@ -148,22 +117,6 @@ const ClosableDrawer: VFC<Props> = (props: Props) => {
         onClose={onClose}
       >
         <div onClick={onClose} onKeyDown={onClose}>
-          <div className={classes.searchField}>
-            <TextInput
-              fullWidth={false}
-              label="キーワードを入力"
-              multiline={false}
-              minRows={1}
-              required={false}
-              value={keyword}
-              type="text"
-              onChange={inputKeyword}
-            />
-            <IconButton>
-              <Search />
-            </IconButton>
-          </div>
-          <Divider />
           <List>
             {menus.map(
               (menu) =>

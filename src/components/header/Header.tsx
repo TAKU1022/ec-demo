@@ -9,9 +9,6 @@ import { ClosableDrawer, HeaderMenus } from '.';
 
 const useStyles = makeStyles(
   createStyles({
-    root: {
-      flexGrow: 1,
-    },
     menuBar: {
       backgroundColor: '#fff',
       color: '#444',
@@ -53,7 +50,7 @@ const Header: VFC = () => {
   );
 
   return (
-    <header className={classes.root}>
+    <>
       <AppBar position="fixed" className={classes.menuBar}>
         <Toolbar className={classes.toolBar}>
           <h1 className={classes.logo} onClick={() => dispatch(push('/'))}>
@@ -66,8 +63,9 @@ const Header: VFC = () => {
           )}
         </Toolbar>
       </AppBar>
+
       <ClosableDrawer isOpen={sideBarOpen} onClose={handleDrawerToggle} />
-    </header>
+    </>
   );
 };
 

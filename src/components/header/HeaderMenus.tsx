@@ -1,6 +1,6 @@
 import { memo, MouseEvent, useEffect, VFC } from 'react';
 import { Badge, IconButton } from '@material-ui/core';
-import { FavoriteBorder, Menu, ShoppingCart } from '@material-ui/icons';
+import { Menu, ShoppingCart } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../reducks/store/store';
 import { getProductsInCart, getUserId } from '../../reducks/users/selectors';
@@ -66,9 +66,6 @@ const HeaderMenus: VFC<Props> = memo((props: Props) => {
         <Badge badgeContent={productsInCart.length} color="secondary">
           <ShoppingCart />
         </Badge>
-      </IconButton>
-      <IconButton>
-        <FavoriteBorder />
       </IconButton>
       <IconButton onClick={handleDrawerToggle}>
         <Menu />

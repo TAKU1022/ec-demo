@@ -41,8 +41,6 @@ const CartListItem: VFC<Props> = (props: Props) => {
   const selector = useSelector((state: RootState) => state);
   const { product } = props;
 
-  console.log(product);
-
   const image = product.images![0].path;
   const price = product.price?.toLocaleString();
 

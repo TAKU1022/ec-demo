@@ -8,7 +8,7 @@ import {
   TableContainer,
   TableRow,
 } from '@material-ui/core';
-import { FavoriteBorder, ShoppingCart } from '@material-ui/icons';
+import { ShoppingCart } from '@material-ui/icons';
 
 const useStyles = makeStyles({
   iconCell: {
@@ -47,11 +47,6 @@ const SizeTable: VFC<Props> = memo((props: Props) => {
                   ) : (
                     <p>売切</p>
                   )}
-                </TableCell>
-                <TableCell className={classes.iconCell}>
-                  <IconButton>
-                    <FavoriteBorder />
-                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}

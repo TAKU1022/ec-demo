@@ -99,7 +99,7 @@ const ProductDetail: VFC = () => {
           </div>
           <div className={classes.detail}>
             <h2 className="u-text__headline">{product.name}</h2>
-            <p className={classes.price}>{product.price.toLocaleString()}</p>
+            <p className={classes.price}>¥{product.price.toLocaleString()}</p>
             <div className="module-spacer--small" />
             <SizeTable sizes={product.sizes} addProduct={addProduct} />
             <div className="module-spacer--small" />
