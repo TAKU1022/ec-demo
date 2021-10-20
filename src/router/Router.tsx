@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router';
 import Auth from '../Auth';
 import {
   CartList,
+  OrderComplete,
   OrderConfirm,
   OrderHistory,
   ProductDetail,
@@ -27,6 +28,7 @@ const Router: VFC = () => {
         <Route exact path="/cart" component={CartList} />
         <Route exact path="/order/confirm" component={OrderConfirm} />
         <Route exact path="/order/history" component={OrderHistory} />
+        <Route exact path="/order/complete" component={OrderComplete} />
       </Auth>
     </Switch>
   );
