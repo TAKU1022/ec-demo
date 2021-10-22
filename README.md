@@ -5,7 +5,7 @@
 
 ## 概要
 Reactとfirebaseを用いた擬似ECサイトです。（決済機能は導入しておりません）  
-Redux(Redux-Thunk)によってユーザー情報と商品情報をStoreで管理しています。
+Redux(Redux-Thunk)によってユーザー情報と商品情報をStoreで一元管理しています。
 
 ## 公開URL
 [ec-demo-1c4c7.web.app](https://ec-demo-1c4c7.web.app)
